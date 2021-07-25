@@ -48,13 +48,11 @@ class App extends React.Component {
                 orderTotal: newTotal,
                 basketHidden: false
             })
-            this.addToDinerOrder(item)
         }
         this.canContinueOrder()
     }
 
     continueDinerOrder = () => {
-        //TODO - logic here not functioniong properly as per rules
         let currentDiner = this.state.currDiner
         let continueOrder = confirm("Would you like to order more for Diner" + currentDiner)
         if(continueOrder && currentDiner == 1 && this.state.dinerOne.length == 3){
@@ -62,13 +60,24 @@ class App extends React.Component {
             this.setState({
                 currDiner : 2
             })
-        } else if(continueOrder && this.state.dinerTwo.length == 3){
+        } else if(continueOrder && currentDiner == 2 && this.state.dinerTwo.length == 3){
             alert("Diner", currentDiner, "has ordered the maximum courses")
-        } else if(!continueOrder && this.state.dinerOne.length < 2 || !continueOrder && this.state.dinerTwo.length < 2) {
+
+        } else if(!continueOrder  && currentDiner == 1 && this.state.dinerOne.length < 2) {
             alert("Each Diner must select at least two courses, please chooose another")
-        } else if(!continueOrder && this.state.dinerOne.length == 2 || !continueOrder && this.state.dinerTwo.length == 2) {
+
+        } else if(!continueOrder  && currentDiner == 2 && this.state.dinerTwo.length < 2) {
+            alert("Each Diner must select at least two courses, please chooose another")
+
+        } else if(!continueOrder && currentDiner == 1 && this.state.dinerOne.length == 2) {
            this.checkCourseMain()
-        } 
+           this.setState({
+                currDiner : 2
+            })
+
+        } else if(!continueOrder && currentDiner == 2  && this.state.dinerTwo.length == 2) {
+            this.checkCourseMain()
+        }
     }
 
     canContinueOrder = () => {
@@ -81,6 +90,7 @@ class App extends React.Component {
         }
     }
 
+    //TODO stop diner from odering the from the same course, so you cant have two starters
     checkCourseSelection = (item) => {
         let dinerOneCourses = this.state.dinerOne;
         let dinerTwoCourses = this.state.dinerTwo;
