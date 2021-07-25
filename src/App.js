@@ -52,6 +52,7 @@ class App extends React.Component {
         this.canContinueOrder()
     }
 
+    //TODO need to ensure logic here is working properly
     continueDinerOrder = () => {
         let currentDiner = this.state.currDiner
         let continueOrder = confirm("Would you like to order more for Diner" + currentDiner)
