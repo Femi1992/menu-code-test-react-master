@@ -43,3 +43,8 @@ This restaurant unfortunately has a number of rules about the meals that can be 
 Please submit your program as an online repository or downloadable link to your point of contact at OpenTable.
 
 
+## Things to Improve
+-The logic for when a diner selects two courses from the same section needs to be improved so that if the selection is invalid, the item is not added onto the basket
+-There is a general feeling for that this logic includes "too" many IF statements, but I am not sure how I would improve it as there are quite a few conditions to check
+-styling
+-testing
